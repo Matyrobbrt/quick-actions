@@ -72,7 +72,8 @@ jobs:
           git add --force /patches-/
           git add --force *.patch.rej
           git add --force /projects/*/rejects/
+          git add --force rejects/
           git commit -m "Rejects"
       - name: Push
         run: |
-          git push
+          git push origin
