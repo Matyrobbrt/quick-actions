@@ -40,6 +40,7 @@ jobs:
         run: |
           git remote add upstream https://github.com/neoforged/neoforge
           git fetch upstream ${{ inputs.upstream_branch }}
+          git fetch --tags upstream
           git switch -c ${{ inputs.mc_version }} upstream/${{ inputs.upstream_branch }}
 
       - name: Update versions
