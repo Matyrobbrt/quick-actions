@@ -42,8 +42,8 @@ jobs:
 
       - name: Update versions
         run: |
-          sed -i -E "s/minecraft_version=[\d\w\.-]+/minecraft_version=${{ inputs.mc_version }}/g" gradle.properties
-          sed -i -E "s/neoform_version=[\d\w\.-]+/neoform_version=${{ inputs.neoform_version }}/g" gradle.properties
+          sed -i -E "s/minecraft_version=.+/minecraft_version=${{ inputs.mc_version }}/g" gradle.properties
+          sed -i -E "s/neoform_version=.+/neoform_version=${{ inputs.neoform_version }}/g" gradle.properties
 
       - name: Commit version update
         run: |
