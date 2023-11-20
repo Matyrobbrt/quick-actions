@@ -65,8 +65,9 @@ jobs:
       
       - name: Commit MC Sources
         run: |
-          git commit -m "MC Sources"
           git add --force projects/base/src
+          git add --force projects/neoforge/src
+          git commit -m "MC Sources"
       - name: Commit Rejects
         run: |
           git add --force /patches-/
