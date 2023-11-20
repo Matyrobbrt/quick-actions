@@ -43,6 +43,18 @@ jobs:
           git fetch --tags upstream
           git switch -c ${{ inputs.mc_version }} upstream/${{ inputs.upstream_branch }}
 
+      - name: Build initially with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+            arguments: setup
+
+      - name: Commit initial
+        run: |
+          git add --force projects/base/src
+          git add --force projects/neoforge/src
+          git commit -m "Initial base"
+          git push origin +${{ inputs.mc_version }}:${{ inputs.mc_version }}
+
       - name: Update versions
         run: |
           sed -i -E "s/minecraft_version=.+/minecraft_version=${{ inputs.mc_version }}/g" gradle.properties
@@ -52,7 +64,6 @@ jobs:
         run: |
           git add gradle.properties
           git commit -m "Update versions"
-          git push origin +${{ inputs.mc_version }}:${{ inputs.mc_version }}
 
       - name: Make Gradlew executable
         # language=bash
@@ -67,12 +78,10 @@ jobs:
         run: |
           git add --force projects/base/src
           git add --force projects/neoforge/src
-          git commit -m "MC Sources"
+          git commit -m "MC Sources ${{ inputs.mc_version }}"
       - name: Commit Rejects
         run: |
           git add --force *.patch.rej
-          git add --force /projects/*/rejects/
-          git add --force rejects/
           git commit -m "Rejects"
       - name: Push
         run: |
