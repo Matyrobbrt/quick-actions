@@ -28,6 +28,8 @@ jobs:
         with:
           repository: matyrobbrt/kits-test
           token: ${{ secrets.PAT }}
+          fetch-depth: 1000
+          fetch-tags: true
       
       - name: Configure git
         run: |
