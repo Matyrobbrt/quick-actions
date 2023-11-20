@@ -70,7 +70,6 @@ jobs:
           git commit -m "MC Sources"
       - name: Commit Rejects
         run: |
-          git add --force /patches-/
           git add --force *.patch.rej
           git add --force /projects/*/rejects/
           git add --force rejects/
