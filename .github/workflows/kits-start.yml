@@ -82,7 +82,7 @@ jobs:
       - name: Commit Rejects
         run: |
           git add --force *.patch.rej
-          git commit -m "Rejects"
+          git commit --allow-empty -m "Rejects"
       - name: Push
         run: |
           git push origin
